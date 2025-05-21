@@ -1,5 +1,7 @@
 <div align="center">
+
 # catdo.nvim
+
 a plugin to solve the problem of moving to the ____ todo file in the git project
 
 lets be real, todo files are great, but going between the 
@@ -11,6 +13,8 @@ todo and what you're working on is a pain.
 
 ### Installation
 super basic install with lazy.nvim (https://github.com/folke/lazy.nvim)
+</div>
+
 ```lua
 {
     -- catdo.lua
