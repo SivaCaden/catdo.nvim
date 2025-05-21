@@ -11,9 +11,11 @@ todo and what you're working on is a pain.
 - [x] open the todo file within your current window, allowing you to quickly add and review tasks
 
 
-### Installation
-super basic install with lazy.nvim (https://github.com/folke/lazy.nvim)
+## Installation
+
 </div>
+
+super basic install with lazy.nvim (https://github.com/folke/lazy.nvim)
 
 ```lua
 {
@@ -27,6 +29,19 @@ super basic install with lazy.nvim (https://github.com/folke/lazy.nvim)
     },
 },
 ```
+using packer.nvim
+```lua
+use {
+    "SivaCaden/catdo.nvim",
+    config = function()
+        require("catdo").setup()
+    end,
+    keys = {
+        { "<leader>ct", "<cmd>Catdo<cr>", desc = "catdo" },
+    },
+}
+```
+
 
 this project is still super early in development, so please report any bugs or issues you find
 I would love to hear your feedback
