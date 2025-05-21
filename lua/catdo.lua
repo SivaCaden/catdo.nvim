@@ -34,9 +34,10 @@ local function get_git_root()
         if result ~= "" then
             return result:gsub("%s+", "")
         end
+        return all
     end
 
-    return all
+    return nil
 
 end
 
@@ -45,7 +46,7 @@ local function find_todo(git_root)
     if handle then
         local result = handle:read("*l")
         handle:close()
-        reutrn result
+        return result
     end
     return nil
 end
@@ -87,7 +88,6 @@ end
 
 local function setup_user_commands(opts)
     local meme = opts or {}
-    local target = meme.target or "todo.md"
     vim.api.nvim_create_user_command("Cat", function()
         open_float_file()
     end, {})
