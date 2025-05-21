@@ -1,13 +1,5 @@
 local M = {}
 
-
-local function expand_path(path)
-    if path:sub(1,1) == "~" then
-        return os.getenv("HOME") .. path:sub(2)
-    end
-    return path
-end
-
 local function window_config()
     local width = math.min(math.floor(vim.o.columns * 0.8), 64)
     local height = math.floor(vim.o.lines * 0.8)
@@ -127,7 +119,7 @@ end
 
 local function setup_user_commands(opts)
     local meme = opts or {}
-    vim.api.nvim_create_user_command("Cat", function()
+    vim.api.nvim_create_user_command("Catdo", function()
         open_float_file()
     end, {})
 end
