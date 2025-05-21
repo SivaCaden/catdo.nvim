@@ -89,7 +89,7 @@ local function setup_user_commands(opts)
     local meme = opts or {}
     local target = meme.target or "todo.md"
     vim.api.nvim_create_user_command("Cat", function()
-        open_float_file(target)
+        open_float_file()
     end, {})
 end
 
