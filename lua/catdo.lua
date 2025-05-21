@@ -26,7 +26,46 @@ local function window_config()
 end
 
 
-local function open_float_file(target)
+local function get_git_root()
+    local handle = io.popen("git rev-parse --show-toplevel 2>/dev/null")
+    if handle then
+        local result = handle:read("*a")
+        handle:close()
+        if result ~= "" then
+            return result:gsub("%s+", "")
+        end
+    end
+
+    return all
+
+end
+
+local function find_todo(git_root)
+    local handle = io.popen("find " .. git_root .. " -type f -name 'todo.md' 2>/dev/null")
+    if handle then
+        local result = handle:read("*l")
+        handle:close()
+        reutrn result
+    end
+    return nil
+end
+
+
+
+local function open_float_file()
+    local git_root = get_git_root()
+    if not git_root or git_root == "" then
+        vim.notify("Not in a git repository", vim.log.levels.ERROR)
+        return
+    end
+    local target = find_todo(git_root)
+
+    if not target or target == "" then
+        vim.notify("No todo.md file found in the git repository", vim.log.levels.ERROR)
+        return
+    end
+
+
     local exp_filepath = expand_path(target)
     if vim.fn.filereadable(exp_filepath) == 0 then
         vim.notify("File " .. exp_filepath .. " does not exist. Creating it now.", vim.log.levels.INFO)
