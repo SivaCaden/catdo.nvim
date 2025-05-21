@@ -27,7 +27,8 @@ end
 
 local function prompt_create_todo(callback)
     local bufnr = vim.api.nvim_create_buf(false, true)
-    local width, height = 3, 3
+    local width = math.min(math.floor(vim.o.columns * 0.8), 64)
+    local height = 4
     local col = math.floor((vim.o.columns - width) / 2)
     local row = math.floor((vim.o.lines - height) / 2)
 
